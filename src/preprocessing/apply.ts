@@ -59,8 +59,9 @@ export async function applyPreprocessing(params: {
   // Update context with preprocessed body
   ctx.BodyForAgent = result.prompt;
 
-  // Re-finalize context with the updated body
-  finalizeInboundContext(ctx, { forceBodyForAgent: true });
+  // Re-finalize WITHOUT forceBodyForAgent - this preserves our tagged BodyForAgent
+  // while still applying newline normalization and sender meta formatting for group chats
+  finalizeInboundContext(ctx);
 
   return {
     applied: true,

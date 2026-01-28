@@ -53,6 +53,7 @@ const GROUP_LABELS: Record<string, string> = {
   gateway: "Gateway",
   nodeHost: "Node Host",
   agents: "Agents",
+  preprocessing: "Preprocessing",
   tools: "Tools",
   bindings: "Bindings",
   audio: "Audio",
@@ -80,6 +81,7 @@ const GROUP_ORDER: Record<string, number> = {
   gateway: 30,
   nodeHost: 35,
   agents: 40,
+  preprocessing: 45,
   tools: 50,
   bindings: 55,
   audio: 60,
@@ -164,6 +166,14 @@ const FIELD_LABELS: Record<string, string> = {
   "tools.links.timeoutSeconds": "Link Understanding Timeout (sec)",
   "tools.links.models": "Link Understanding Models",
   "tools.links.scope": "Link Understanding Scope",
+  "preprocessing.enabled": "Enable Preprocessing",
+  "preprocessing.model": "Preprocessing Model",
+  "preprocessing.contextFiles": "Context Files",
+  "preprocessing.systemPromptPath": "System Prompt Path",
+  "preprocessing.maxTokens": "Max Tokens",
+  "preprocessing.timeoutSeconds": "Timeout (seconds)",
+  "preprocessing.excludePatterns": "Exclude Patterns",
+  "preprocessing.authProfile": "Auth Profile",
   "tools.profile": "Tool Profile",
   "tools.alsoAllow": "Tool Allowlist Additions",
   "agents.list[].tools.profile": "Agent Tool Profile",
@@ -462,6 +472,16 @@ const FIELD_HELP: Record<string, string> = {
   "tools.web.fetch.firecrawl.maxAgeMs":
     "Firecrawl maxAge (ms) for cached results when supported by the API.",
   "tools.web.fetch.firecrawl.timeoutSeconds": "Timeout in seconds for Firecrawl requests.",
+  "preprocessing.enabled": "Enable prompt tagging before messages reach the agent.",
+  "preprocessing.model": 'Model to use for preprocessing (e.g., "gemini/gemini-2.0-flash").',
+  "preprocessing.contextFiles":
+    "Paths to .md files that define tagging rules (supports ~ for home directory).",
+  "preprocessing.systemPromptPath":
+    "Optional path to custom system prompt (uses built-in strict prompt if not set).",
+  "preprocessing.maxTokens": "Maximum tokens for preprocessor response (default: 500).",
+  "preprocessing.timeoutSeconds": "Timeout in seconds for preprocessing (default: 30).",
+  "preprocessing.excludePatterns": 'Regex patterns for messages to skip (e.g., "^/" for commands).',
+  "preprocessing.authProfile": "Auth profile to use for the preprocessing model.",
   "channels.slack.allowBots":
     "Allow bot-authored messages to trigger Slack replies (default: false).",
   "channels.slack.thread.historyScope":

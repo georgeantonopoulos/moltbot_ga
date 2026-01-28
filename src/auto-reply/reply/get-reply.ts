@@ -13,6 +13,7 @@ import type { MsgContext } from "../templating.js";
 import { SILENT_REPLY_TOKEN } from "../tokens.js";
 import { applyMediaUnderstanding } from "../../media-understanding/apply.js";
 import { applyLinkUnderstanding } from "../../link-understanding/apply.js";
+import { applyPreprocessing } from "../../preprocessing/apply.js";
 import type { GetReplyOptions, ReplyPayload } from "../types.js";
 import { resolveDefaultModel } from "./directive-handling.js";
 import { resolveReplyDirectives } from "./get-reply-directives.js";
@@ -93,6 +94,11 @@ export async function getReplyFromConfig(
     await applyLinkUnderstanding({
       ctx: finalized,
       cfg,
+    });
+    await applyPreprocessing({
+      ctx: finalized,
+      cfg,
+      agentDir,
     });
   }
 
